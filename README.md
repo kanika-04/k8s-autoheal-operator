@@ -32,18 +32,18 @@ When a failing pod is detected, the operator traces it back to its parent Deploy
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                   Kubernetes Cluster                     │
+│                   Kubernetes Cluster                    │
 │                                                         │
-│  ┌──────────────┐    ┌──────────────┐    ┌───────────┐ │
-│  │  Pod Watcher  │───▶│  Rate-Limited │───▶│  Healer   │ │
-│  │  (Informer)   │    │    Queue      │    │  Worker   │ │
-│  └──────────────┘    └──────────────┘    └───────────┘ │
+│  ┌──────────────┐    ┌──────────────┐    ┌───────────┐  │
+│  │  Pod Watcher  │───▶│  Rate-Limited │───▶│  Healer   │ 
+│  │  (Informer)   │    │    Queue      │    │  Worker    │ 
+│  └──────────────┘    └──────────────┘    └───────────┘  │
 │        │                                       │        │
 │        ▼                                       ▼        │
-│  Watches all pods                    Performs rolling    │
-│  for failure states                  restart on parent   │
+│  Watches all pods                    Performs rolling   │
+│  for failure states                  restart on parent  │
 │  (CrashLoopBackOff,                 Deployment via      │
-│   OOMKilled, Error)                 annotation update    │
+│   OOMKilled, Error)                 annotation update   │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
